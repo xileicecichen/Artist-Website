@@ -2,7 +2,7 @@
   "name": "ceci-artist-website",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://xileicecichen.github.io/Artist-Website/",
+  "homepage": "https://xileicecichen.com/",
   "type": "module",
   "scripts": {
     "dev": "vite",

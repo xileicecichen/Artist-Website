@@ -1,0 +1,21 @@
+/* src/styles/CopyrightBar.css */
+.copyright-bar {
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  font-family: 'Syncopate', sans-serif;
+  position: absolute;
+  bottom: 5px;
+  z-index: 10;
+  letter-spacing: 0.2em;
+  z-index: 10;
+}
+
+/* Black text for light backgrounds (default for all non-home pages) */
+.copyright-bar--black {
+  color: #222;
+}
+/* White text for home page (dark background) */
+.copyright-bar--white {
+  color: #fff;
+}

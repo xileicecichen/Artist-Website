@@ -1,0 +1,163 @@
+/* ProjectDetail.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@300;400;500&family=Syncopate:wght@400;700&display=swap');
+
+/* Main page container */
+.projectpage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main content below the navbar */
+.projectpage-main {
+    position: fixed; /* Remove scrolling entirely */
+    top: 80px;
+    left: 300px;
+    right: 60px;
+    bottom: 155px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensure central alignment */
+    box-sizing: border-box;
+}
+
+/* Image container */
+.image-container {
+    flex: 0 0 auto; /* Container stops after the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 300px); /* Leave space for navbar + info below */
+    box-sizing: border-box;
+}
+
+/* Dynamically size the image based on smaller dimension */
+.project-image {
+    max-width: 90%; /* Ensure width takes remaining after arrows */
+    max-height: 100%; /* Ensure height doesn't overflow */
+    object-fit: contain; /* Scale-down based on maintaining aspect */
+}
+
+/* Navigation arrows to match image alignment */
+.nav-arrow {
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 5;
+    width: 5%; /* Arrows reserve 5% img-container width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    color: black;
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+/* Ensure project info is positioned below the image */
+.project-info-container {
+    margin-top: 10px; /* Space between image and info */
+    width: 90%; /* Match the image width */
+    text-align: right; /* Align text to the right */
+}
+
+/* Style for textual info alignment and spacing */
+.image-details {
+    font-family: 'Murecho', sans-serif;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 2px;
+}
+
+.image-details p {
+    margin: 4px 0;
+}
+
+/* Thumbnails follow layout properly */
+.thumbnail-link-container {
+    margin-top: 10px; /* Padding for thumbnails relative */
+    align-self: flex-end; /* Align right with info */
+}
+
+.thumbnail-link {
+    font-family: 'Syncopate', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s;
+}
+
+.thumbnail-link:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive design for smaller widths */
+@media (max-width: 768px) {
+    .projectpage-main {
+        top: 60px; /* Reduce navbar space */
+    }
+
+    .image-container {
+        height: calc(100vh - 200px); /* Preserve clear spacing */
+    }
+}
+/* ProjectDetail.css */
+/* Keep all your existing CSS above this section unchanged */
+
+/* Ensure project info is positioned below the image */
+.project-info-container {
+    margin-top: 10px; /* Space between image and info */
+    width: 90%; /* Match the image width */
+    text-align: right; /* Align text to the right */
+    position: relative; /* Add this to position it relatively */
+    /* The width will be controlled by JavaScript */
+}
+
+/* Style for textual info alignment and spacing */
+.image-details {
+    font-family: 'Murecho', sans-serif;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 2px;
+}
+
+.image-details p {
+    margin: 4px 0;
+}
+
+/* Thumbnails follow layout properly */
+.thumbnail-link-container {
+    margin-top: 10px; /* Padding for thumbnails relative */
+    align-self: flex-end; /* Align right with info */
+}
+
+/* Add these at the end of your CSS file */
+@media (min-width: 1200px) {
+    /* This is the media query that will apply the info container adjustment at larger screens */
+    .project-info-container {
+        max-width: calc(90% - ((100vw - 1200px) / 2)); /* Adjusts width based on screen size difference */
+    }
+}

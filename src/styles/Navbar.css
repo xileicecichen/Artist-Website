@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 300;
+}
+
+.thin-look {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-weight: 400; /* closest to light */
+  opacity: 0.7;     /* visually simulate thin */
+}
+
+.navbar--white .nameSection,
+.navbar--white .nameEN,
+.navbar--white .nameCN,
+.navbar--white .title {
+  color: #fff;
+}
+
+.navbar--black .nameSection,
+.navbar--black .nameEN,
+.navbar--black .nameCN,
+.navbar--black .title {
+  color: #000;
+}
+
+.navbarText--white {
+  color: #fff !important;
+}
+.navbarText--black {
+  color: #000 !important;
+}
+
+.nameSection {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s;
+}
+
+.nameSection--hoverable:focus,
+.nameSection--hoverable:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.nameEN {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0.2em;
+}
+
+.nameCN {
+  font-family:'Noto Sans SC', sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  margin-left: 3px;
+  margin-top: -5px;
+}
+
+/* ... repeat for other sections ... */
+
+.projectSection,
+.workSection,
+.naviSection {
+  position: absolute;
+  left: 60px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2em;
+  transition: transform 0.25s;
+}
+
+.title:focus,
+.title:hover {
+  transform: scale(1.05);
+} 
+
+.projectSection { bottom: 305px; }
+.workSection    { bottom: 235px; }
+.naviSection    { bottom: 145px; }
+
+.instagramIcon {
+  position: absolute;
+  left: 60px;
+  bottom: 85px;
+  z-index: 10;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s;
+  cursor: pointer;
+}
+
+.instagramIcon:focus,
+.instagramIcon:hover {
+  transform: scale(1.1);
+}

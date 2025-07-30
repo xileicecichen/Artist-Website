@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap');
+
+.subpage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #222;
+}
+
+.subpage-main {
+    position: absolute;
+    left: 400px;
+    right: 60px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.subpage-main::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Edge */
+}
+
+.cvpage-title {
+    text-align: left;
+    margin-top: 60px;
+    margin-bottom: 2rem;
+    font-size: 32px;
+    letter-spacing: 3px;
+    font-weight: 300;
+    font-family: 'Murecho', sans-serif;
+}
+.cvpage-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 1.1px;
+    font-family: 'Murecho';
+    font-style: normal;
+    /* margin-bottom: 3rem; */
+}
+
+i {
+  font-family: 'Murecho', sans-serif;
+}
+
+a {
+  color: inherit;           /* or set your desired color, e.g. #333 */
+  text-decoration: none;    /* remove underline by default */
+  cursor: pointer;          /* optional: show pointer on hover */
+}
+
+a:hover {
+  text-decoration: underline;  /* underline only on hover */
+}
+
+.cvpage-title a {
+  font-size: 18px;
+}
+
+.statement-text {
+    margin-top: 130px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 1.1px;
+    font-family: 'Annie Use Your Telescope', cursive;
+}
+
+.contact-main {
+    position: absolute;
+    left: 320px;
+    right: 60px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-img{
+    padding-top: 130px;
+    padding-bottom: 40px;
+    width: 600px;
+    height: 395px;
+}
+
+.contact-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 3px;
+    font-family: 'Murecho';
+    font-style: normal;
+}

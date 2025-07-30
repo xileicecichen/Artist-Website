@@ -1,0 +1,429 @@
+[
+    {
+        "id": "cemetery-one-month",
+        "title": "Cemetery One Month 墓地一月",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/cemetery-one-month/1.webp",
+            "thumb": "/images/cemetery-one-month/1-thumb.webp",
+            "media": "Analog film (digitally composited)",
+            "dimension": "22.5 by 30 inches",
+            "year": 2025
+        }
+        ]    
+    }
+    ,
+    {
+        "id": "we-tried-to-hold-it-together",
+        "title": "We Tried To Hold It Together",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/we-tried-to-hold-it-together/1.webp",
+            "thumb": "/images/we-tried-to-hold-it-together/1-thumb.webp",
+            "media": "Ceramics and staples",
+            "year": 2024
+        }
+        ]    
+    }
+    ,
+    {
+        "id": "untitled",
+        "title": "Untitled",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/untitled/1.webp",
+            "thumb": "/images/untitled/1-thumb.webp",
+            "title": "0",
+            "media": "Photography",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "2",
+            "full": "/images/untitled/2.webp",
+            "thumb": "/images/untitled/2-thumb.webp",
+            "title": "1",
+            "media": "Photography",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "3",
+            "full": "/images/untitled/3.webp",
+            "thumb": "/images/untitled/3-thumb.webp",
+            "title": "3",
+            "media": "Photography",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "4",
+            "full": "/images/untitled/4.webp",
+            "thumb": "/images/untitled/4-thumb.webp",
+            "title": "6",
+            "media": "Photography",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "5",
+            "full": "/images/untitled/5.webp",
+            "thumb": "/images/untitled/5-thumb.webp",
+            "title": "8",
+            "media": "Photography",
+            "year": 2024
+        }
+        ]    
+    }
+    ,
+    {
+        "id": "nowhere-to-hide",
+        "title": "Nowhere To Hide",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/nowhere-to-hide/1.webp",
+            "thumb": "/images/nowhere-to-hide/1-thumb.webp",
+            "title": "6",
+            "media": "Photography",
+            "dimension": "16 by 20 inches",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "2",
+            "full": "/images/nowhere-to-hide/2.webp",
+            "thumb": "/images/nowhere-to-hide/2-thumb.webp",
+            "title": "9",
+            "media": "Photography",
+            "dimension": "16 by 20 inches",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "3",
+            "full": "/images/nowhere-to-hide/3.webp",
+            "thumb": "/images/nowhere-to-hide/3-thumb.webp",
+            "title": "10",
+            "media": "Photography",
+            "dimension": "16 by 20 inches",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "4",
+            "full": "/images/nowhere-to-hide/4.webp",
+            "thumb": "/images/nowhere-to-hide/4-thumb.webp",
+            "title": "11",
+            "media": "Photography",
+            "dimension": "16 by 20 inches",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "5",
+            "full": "/images/nowhere-to-hide/5.webp",
+            "thumb": "/images/nowhere-to-hide/5-thumb.webp",
+            "title": "15",
+            "media": "Photography",
+            "dimension": "16 by 20 inches",
+            "year": 2023
+        }
+        ]    
+    }
+    ,
+    {
+        "id": "marry-the-planet",
+        "title": "Marry the Planet 嫁给星球",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/marry-the-planet/1.webp",
+            "thumb": "/images/marry-the-planet/1-thumb.webp",
+            "title": "Canton, 4",
+            "media": "Photography",
+            "year": 2022
+        },
+        {
+            "id": "2",
+            "full": "/images/marry-the-planet/2.webp",
+            "thumb": "/images/marry-the-planet/2-thumb.webp",
+            "title": "Canton, 10",
+            "media": "Photography",
+            "year": 2022
+        },
+        {
+            "id": "3",
+            "full": "/images/marry-the-planet/3.webp",
+            "thumb": "/images/marry-the-planet/3-thumb.webp",
+            "title": "Canton, 11",
+            "media": "Photography",
+            "year": 2022
+        },
+        {
+            "id": "4",
+            "full": "/images/marry-the-planet/4.webp",
+            "thumb": "/images/marry-the-planet/4-thumb.webp",
+            "title": "Canton, 37",
+            "media": "Photography",
+            "year": 2022
+        },
+        {
+            "id": "5",
+            "full": "/images/marry-the-planet/5.webp",
+            "thumb": "/images/marry-the-planet/5-thumb.webp",
+            "title": "Tibet, 1",
+            "media": "Photography",
+            "year": 2023
+        }
+        ,
+        {
+            "id": "6",
+            "full": "/images/marry-the-planet/6.webp",
+            "thumb": "/images/marry-the-planet/6-thumb.webp",
+            "title": "Tibet, 2",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "7",
+            "full": "/images/marry-the-planet/7.webp",
+            "thumb": "/images/marry-the-planet/7-thumb.webp",
+            "title": "Tibet, 4",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "8",
+            "full": "/images/marry-the-planet/8.webp",
+            "thumb": "/images/marry-the-planet/8-thumb.webp",
+            "title": "Tibet, 8",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "9",
+            "full": "/images/marry-the-planet/9.webp",
+            "thumb": "/images/marry-the-planet/9-thumb.webp",
+            "title": "Tibet, 15",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "10",
+            "full": "/images/marry-the-planet/10.webp",
+            "thumb": "/images/marry-the-planet/10-thumb.webp",
+            "title": "Tibet, 17",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "11",
+            "full": "/images/marry-the-planet/11.webp",
+            "thumb": "/images/marry-the-planet/11-thumb.webp",
+            "title": "Tibet, 20",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "12",
+            "full": "/images/marry-the-planet/12.webp",
+            "thumb": "/images/marry-the-planet/12-thumb.webp",
+            "title": "Dongshan Island, 10",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "13",
+            "full": "/images/marry-the-planet/13.webp",
+            "thumb": "/images/marry-the-planet/13-thumb.webp",
+            "title": "Dongshan Island, 24",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "14",
+            "full": "/images/marry-the-planet/14.webp",
+            "thumb": "/images/marry-the-planet/14-thumb.webp",
+            "title": "Dongshan Island, 26",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "15",
+            "full": "/images/marry-the-planet/15.webp",
+            "thumb": "/images/marry-the-planet/15-thumb.webp",
+            "title": "Dongshan Island, 34",
+            "media": "Photography",
+            "year": 2023
+        },
+        {
+            "id": "16",
+            "full": "/images/marry-the-planet/16.webp",
+            "thumb": "/images/marry-the-planet/16-thumb.webp",
+            "title": "Dongshan Island, 40",
+            "media": "Photography",
+            "year": 2023
+        }
+        ]
+    }
+    ,
+    {
+        "id": "studio-work",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/studio-work/1.webp",
+            "thumb": "/images/studio-work/1-thumb.webp",
+            "title": "10 Things in the Printmaking Studio, Page 0",
+            "media": "Zine, vinegar-etched aluminum foil plate prints on paper. Hand-bound.",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ,
+        {
+            "id": "2",
+            "full": "/images/studio-work/2.webp",
+            "thumb": "/images/studio-work/2-thumb.webp",
+            "title": "10 Things in the Printmaking Studio, Page 1 and 2",
+            "media": "Zine, vinegar-etched aluminum foil plate prints on paper. Hand-bound.",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ,
+        {
+            "id": "3",
+            "full": "/images/studio-work/3.webp",
+            "thumb": "/images/studio-work/3-thumb.webp",
+            "title": "10 Things in the Printmaking Studio, Page 3 and 4",
+            "media": "Zine, vinegar-etched aluminum foil plate prints on paper. Hand-bound.",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ,
+        {
+            "id": "4",
+            "full": "/images/studio-work/4.webp",
+            "thumb": "/images/studio-work/4-thumb.webp",
+            "title": "10 Things in the Printmaking Studio, Page 5 and 6",
+            "media": "Zine, vinegar-etched aluminum foil plate prints on paper. Hand-bound.",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ,
+        {
+            "id": "5",
+            "full": "/images/studio-work/5.webp",
+            "thumb": "/images/studio-work/5-thumb.webp",
+            "title": "10 Things in the Printmaking Studio, Page 7 and 8",
+            "media": "Zine, vinegar-etched aluminum foil plate prints on paper. Hand-bound.",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ,
+        {
+            "id": "6",
+            "full": "/images/studio-work/6.webp",
+            "thumb": "/images/studio-work/6-thumb.webp",
+            "title": "10 Things in the Printmaking Studio, Page 9 and 10",
+            "media": "Zine, vinegar-etched aluminum foil plate prints on paper. Hand-bound.",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ,
+        {
+            "id": "7",
+            "full": "/images/studio-work/7.webp",
+            "thumb": "/images/studio-work/7-thumb.webp",
+            "title": "Untitled",
+            "media": "Silkscreen print on paper",
+            "dimension": "4 by 4 inches",
+            "year": 2025
+        }
+        ]    
+    }
+    ,
+    {
+        "id": "graduation-photos",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/graduation-photos/1.webp",
+            "thumb": "/images/graduation-photos/1-thumb.webp"
+        }
+        ,
+        {
+            "id": "2",
+            "full": "/images/graduation-photos/2.webp",
+            "thumb": "/images/graduation-photos/2-thumb.webp"
+        }
+        ,
+        {
+            "id": "3",
+            "full": "/images/graduation-photos/3.webp",
+            "thumb": "/images/graduation-photos/3-thumb.webp"
+        }
+        ,
+        {
+            "id": "4",
+            "full": "/images/graduation-photos/4.webp",
+            "thumb": "/images/graduation-photos/4-thumb.webp"
+        }
+        ]    
+    }
+    ,
+    {
+        "id": "event-photos",
+        "images": [
+        {
+            "id": "1",
+            "full": "/images/event-photos/1.webp",
+            "thumb": "/images/event-photos/1-thumb.webp"
+        }
+        ,
+        {
+            "id": "2",
+            "full": "/images/event-photos/2.webp",
+            "thumb": "/images/event-photos/2-thumb.webp"
+        }
+        ,
+        {
+            "id": "3",
+            "full": "/images/event-photos/3.webp",
+            "thumb": "/images/event-photos/3-thumb.webp"
+        }
+        ,
+        {
+            "id": "4",
+            "full": "/images/event-photos/4.webp",
+            "thumb": "/images/event-photos/4-thumb.webp"
+        }
+        ,
+        {
+            "id": "5",
+            "full": "/images/event-photos/5.webp",
+            "thumb": "/images/event-photos/5-thumb.webp"
+        },
+        {
+            "id": "6",
+            "full": "/images/event-photos/6.webp",
+            "thumb": "/images/event-photos/6-thumb.webp"
+        }
+        ,
+        {
+            "id": "7",
+            "full": "/images/event-photos/7.webp",
+            "thumb": "/images/event-photos/7-thumb.webp"
+        }
+        ,
+        {
+            "id": "8",
+            "full": "/images/event-photos/8.webp",
+            "thumb": "/images/event-photos/8-thumb.webp"
+        }
+    ]
+    }
+]

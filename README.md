@@ -125,8 +125,8 @@ The built files will be in the `dist` directory, ready for GitHub Pages deployme
 ## Credits
 
 - Design & Artwork: Xilei Ceci Chen
-- Development: [Your Name/Team]
-- Photography: Xilei Ceci Chen
+- Development: Xilei Ceci Chen
+- Images: Xilei Ceci Chen
 
 ## License
 

@@ -6,20 +6,12 @@
     <link rel="icon" href="/favicon.ico" />
     <title>Xilei Ceci Chen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--
-      ADD THIS META TAG TO DEFINE YOUR CONTENT SECURITY POLICY
-    -->
-    <meta http-equiv="Content-Security-Policy" content="
-      default-src 'self';
-      script-src 'self';
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-      font-src 'self' data: https://fonts.gstatic.com;
-    ">
-
+    
+    <!-- Fixed CSP - all on one line -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com;">
+    
   </head>
   <body>
     <div id="root"></div>
-    <!-- The build tool will automatically add the script tag here -->
   </body>
 </html>

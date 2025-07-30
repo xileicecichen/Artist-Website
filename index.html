@@ -1,4 +1,3 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,12 +5,13 @@
     <link rel="icon" href="/favicon.ico" />
     <title>Xilei Ceci Chen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Fixed CSP - all on one line -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com;">
-    
+    <!-- Google Fonts: Syncopate (for nav/buttons) -->
+    <link href="https://fonts.googleapis.com/css?family=Syncopate:400,700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
+    <!-- THIS IS THE MISSING LINE - Vite needs this to know your entry point -->
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

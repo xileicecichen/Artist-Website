@@ -102,14 +102,15 @@
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.2em;
-    background: none;
+    background: white;
     border: none;
     cursor: pointer;
-    transition: transform 0.25s;
+  transition: transform 0.25s;
 }
 
+.thumbnail-link:focus,
 .thumbnail-link:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 /* Responsive design for smaller widths */
@@ -150,8 +151,8 @@
 
 /* Thumbnails follow layout properly */
 .thumbnail-link-container {
-    margin-top: 10px; /* Padding for thumbnails relative */
-    align-self: flex-end; /* Align right with info */
+    margin-top: 10px; 
+    align-self: flex-end; 
 }
 
 /* Add these at the end of your CSS file */

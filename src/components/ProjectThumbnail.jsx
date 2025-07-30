@@ -4,6 +4,7 @@ import projects from '../data/projects.json'; // Assuming a local JSON file
 import '../styles/ProjectThumbnail.css';
 import Navbar from './Navbar';
 import CopyrightBar from './CopyrightBar';
+import { getAssetPath } from '../utils/paths.js';
 
 export default function ProjectThumbnail() {
     const { projectId } = useParams();
@@ -34,7 +35,7 @@ export default function ProjectThumbnail() {
                         >
                             <div className="thumbnail-container">
                                 <img
-                                    src={image.thumb}
+                                    src={getAssetPath(image.thumb)}
                                     alt={image.title || `Thumbnail for ${project.title}`}
                                     className="thumbnail-image"
                                 />

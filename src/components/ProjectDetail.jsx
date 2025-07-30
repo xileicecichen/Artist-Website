@@ -4,6 +4,8 @@ import Navbar from './Navbar';
 import CopyrightBar from './CopyrightBar';
 import '../styles/ProjectDetail.css';
 import projectsData from '../data/projects.json';
+import { getAssetPath } from '../utils/paths.js';
+
 
 const ProjectDetail = () => {
   const { projectId, imgId } = useParams(); // Get project ID and image index from the URL
@@ -64,9 +66,18 @@ const ProjectDetail = () => {
   if (!project) {
     return <div className="error-message">Project not found</div>;
   }
-
+  const SPECIAL_HIDDEN_IDS = ['studio-work', 'graduation-photos', 'event-photos'];
   const hasMultipleImages = project.images.length > 1;
   const currentImage = project.images[currentIndex - 1];
+
+  let titleLine = null;
+  if (!SPECIAL_HIDDEN_IDS.includes(projectId)) {
+    if (hasMultipleImages && currentImage?.title) {
+      titleLine = `${project.title}, ${currentImage.title}`;
+    } else {
+      titleLine = project.title;
+    }
+  }
 
   // Handle navigation with arrows
   const handlePrevious = () => {
@@ -111,7 +122,7 @@ const ProjectDetail = () => {
             )}
             <img
                 ref={imageRef}
-                src={currentImage?.full}
+                src={getAssetPath(currentImage?.full)}
                 alt={`${project.title} - Image ${currentIndex + 1}`}
                 className="project-image"
             />
@@ -127,15 +138,15 @@ const ProjectDetail = () => {
             </div>
             <div className="project-info-container" ref={infoContainerRef}>
             <div className="image-details">
-                {currentImage?.title && ( <p className="name">{project.title + ', ' + currentImage.title}</p>)}
+                {titleLine && <p className="name">{titleLine}</p>}
                 <p className="medium">{currentImage?.media}</p>
                 {currentImage?.dimension && ( <p className="dimensions">{currentImage.dimension}</p>)}
                 <p className="year">{currentImage?.year}</p>
             </div>
             <div className="thumbnail-link-container">
-                <span className="thumbnail-link" onClick={navigateToThumbnails}>
+                <button className="thumbnail-link" onClick={navigateToThumbnails}>
                 SHOW THUMBNAILS
-                </span>
+                </button>
             </div>
             </div>
         </div>

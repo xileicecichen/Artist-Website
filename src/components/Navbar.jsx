@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { getAssetPath } from '../utils/paths.js';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
@@ -59,7 +60,7 @@ const Navbar = () => {
 
       {/* Instagram icon (clickable, bottom left) */}
       <div className="instagramIcon" aria-label="Visit Ceci Instagram" onClick={handleInstagramClick}>
-        <img src={instaIcon} alt="Instagram" />
+        <img src={getAssetPath(instaIcon)} alt="Instagram" />
       </div>
     </div>
   );

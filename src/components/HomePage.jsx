@@ -12,7 +12,7 @@ export default function HomePage() {
       {/* Main background image fills viewport */}
       <img
         className="mainImage"
-        src={getAssetPath('/images/home-page/home-page.webp')}
+        src={'/images/home-page/home-page.webp'}
         alt="Ceci Chen Artwork"
         draggable={false}
       />

@@ -1,3 +1,3 @@
 export const getAssetPath = (path) => {
-  return `/${path}`;
+  return `/xileicecichen.com/${path}`;
 };

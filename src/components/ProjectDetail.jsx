@@ -122,7 +122,7 @@ const ProjectDetail = () => {
             )}
             <img
                 ref={imageRef}
-                src={getAssetPath(currentImage?.full)}
+                src={currentImage?.full}
                 alt={`${project.title} - Image ${currentIndex + 1}`}
                 className="project-image"
             />

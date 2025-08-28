@@ -422,7 +422,47 @@
         {
             "id": "8",
             "full": "/images/event-photos/8.webp",
-            "thumb": "/images/event-photos/8-thumb.webp"
+             "thumb": "/images/event-photos/8-thumb.webp"
+        },
+        {
+            "id": "9",
+            "full": "/images/event-photos/9.webp",
+            "thumb": "/images/event-photos/9-thumb.webp"
+        },
+        {
+            "id": "10",
+            "full": "/images/event-photos/10.webp",
+            "thumb": "/images/event-photos/10-thumb.webp"
+        },
+        {
+            "id": "11",
+            "full": "/images/event-photos/11.webp",
+            "thumb": "/images/event-photos/11-thumb.webp"
+        },
+        {
+            "id": "12",
+            "full": "/images/event-photos/12.webp",
+            "thumb": "/images/event-photos/12-thumb.webp"
+        },
+        {
+            "id": "13",
+            "full": "/images/event-photos/13.webp",
+            "thumb": "/images/event-photos/13-thumb.webp"
+        },
+        {
+            "id": "14",
+            "full": "/images/event-photos/14.webp",
+            "thumb": "/images/event-photos/14-thumb.webp"
+        },
+        {
+            "id": "15",
+            "full": "/images/event-photos/15.webp",
+            "thumb": "/images/event-photos/15-thumb.webp"
+        },
+        {
+            "id": "16",
+            "full": "/images/event-photos/16.webp",
+            "thumb": "/images/event-photos/16-thumb.webp"
         }
     ]
     }

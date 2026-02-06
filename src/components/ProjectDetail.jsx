@@ -3,109 +3,159 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import CopyrightBar from './CopyrightBar';
 import '../styles/ProjectDetail.css';
-import projectsData from '../data/projects.json';
-import { getAssetPath } from '../utils/paths.js';
-
+import { supabase } from '../supabaseClient';
 
 const ProjectDetail = () => {
-  const { projectId, imgId } = useParams(); // Get project ID and image index from the URL
+  const { slug, order } = useParams(); 
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const [project, setProject] = useState(null);
+  const [artworks, setArtworks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
   const imageRef = useRef(null);
   const infoContainerRef = useRef(null);
 
-  // Find the current project based on projectId
-  const project = projectsData.find((p) => p.id === projectId);
-
+  // --- 1. FETCH DATA ---
   useEffect(() => {
-    // Update the currentIndex whenever the URL or imgId changes
-    if (project && imgId !== undefined) {
-      const index = parseInt(imgId, 10);
-      if (!isNaN(index) && index >= 0 && index <= project.images.length) {
-        setCurrentIndex(index);
-      }
-    }
-  }, [imgId, project]);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const { data: projData, error: projError } = await supabase
+          .from('projects')
+          .select('id, name, path')
+          .eq('path', slug)
+          .single();
 
-  // New effect to adjust info container width based on image width
+        if (projError || !projData) throw new Error("Project not found");
+        setProject(projData);
+
+        const { data: artData, error: artError } = await supabase
+          .from('artworks')
+          .select('*')
+          .eq('project_id', projData.id)
+          .order('display_order', { ascending: true });
+
+        if (artError) throw artError;
+        setArtworks(artData);
+
+      } catch (err) {
+        console.error("Error loading detail:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (slug) fetchData();
+  }, [slug]);
+
+
+  // --- 2. RESIZE LOGIC ---
   useEffect(() => {
     const handleResize = () => {
       if (imageRef.current && infoContainerRef.current) {
         const img = imageRef.current;
         const infoContainer = infoContainerRef.current;
         
-        // Get image and container dimensions
+        // This ensures the info box matches the VISUAL width of the image
         const imgRect = img.getBoundingClientRect();
         
-        // If window width is larger than a threshold (e.g., 1200px)
         if (window.innerWidth > 1200) {
-          // Set the info container width to match the image width
           infoContainer.style.width = `${imgRect.width}px`;
         } else {
-          // Reset to default for smaller screens
           infoContainer.style.width = '90%';
         }
       }
     };
     
-    // Run on mount and when image loads
     window.addEventListener('resize', handleResize);
     if (imageRef.current) {
-      imageRef.current.onload = handleResize;
+        if (imageRef.current.complete) handleResize();
+        imageRef.current.onload = handleResize;
     }
     
-    // Initial call
     handleResize();
     
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [currentIndex]);
+  }, [loading, order, artworks]); // Re-run when image changes
 
-  // If the project doesn't exist, show an error message
-  if (!project) {
+
+  // --- 3. RENDER GUARDS ---
+  if (loading) {
+      return (
+        <div className="projectpage">
+            <Navbar />
+            <div className="projectpage-main" style={{color:'white', paddingTop:'100px'}}>
+                Loading...
+            </div>
+            <CopyrightBar color="black" />
+        </div>
+      );
+  }
+
+  if (!project || artworks.length === 0) {
     return <div className="error-message">Project not found</div>;
   }
-  const SPECIAL_HIDDEN_IDS = ['studio-work', 'graduation-photos', 'event-photos'];
-  const hasMultipleImages = project.images.length > 1;
-  const currentImage = project.images[currentIndex - 1];
 
-  let titleLine = null;
-  if (!SPECIAL_HIDDEN_IDS.includes(projectId)) {
-    if (hasMultipleImages && currentImage?.title) {
-      titleLine = `${project.title}, ${currentImage.title}`;
-    } else {
-      titleLine = project.title;
-    }
+  const currentOrder = parseInt(order, 10);
+  const currentIndex = artworks.findIndex(a => a.display_order === currentOrder);
+  const currentImage = artworks[currentIndex];
+
+  if (!currentImage) {
+      return <div className="error-message">Image not found</div>;
   }
 
-  // Handle navigation with arrows
+
+  // --- 4. DISPLAY LOGIC ---
+  const SPECIAL_HIDDEN_IDS = ['studio-work', 'graduation-photos', 'event-photos'];
+  const hasMultipleImages = artworks.length > 1;
+
+  let titleLine = null;
+
+  // Only calculate title if not in the hidden list
+  if (!SPECIAL_HIDDEN_IDS.includes(slug)) {
+      // NEW LOGIC: Always add the title if it exists, regardless of how many images there are
+      if (currentImage.title) {
+          titleLine = `${project.name}, ${currentImage.title}`;
+      } else {
+          titleLine = project.name;
+      }
+  }
+
+
+  // --- 5. NAVIGATION ---
   const handlePrevious = () => {
     if (hasMultipleImages) {
-      const newIndex = currentIndex - 1;
-      if (newIndex === 0) {
-        navigate(`/${projectId}/${project.images.length}`);
-      }else{
-        navigate(`/${projectId}/${newIndex}`);
+      if (currentIndex === 0) {
+        const lastOrder = artworks[artworks.length - 1].display_order;
+        navigate(`/${slug}/detail/${lastOrder}`);
+      } else {
+        const prevOrder = artworks[currentIndex - 1].display_order;
+        navigate(`/${slug}/detail/${prevOrder}`);
       }
     }
   };
 
   const handleNext = () => {
     if (hasMultipleImages) {
-      const newIndex = currentIndex + 1;
-      if (newIndex === project.images.length + 1) {
-        navigate(`/${projectId}/1`);
-      }else{
-        navigate(`/${projectId}/${newIndex}`);
+      if (currentIndex === artworks.length - 1) {
+        const firstOrder = artworks[0].display_order;
+        navigate(`/${slug}/detail/${firstOrder}`);
+      } else {
+        const nextOrder = artworks[currentIndex + 1].display_order;
+        navigate(`/${slug}/detail/${nextOrder}`);
       }
     }
   };
 
   const navigateToThumbnails = () => {
-    navigate(`/${projectId}/thumbnail`);
+    navigate(`/${slug}/thumbnail`);
   };
 
+
+  // --- 6. RENDER ---
   return (
     <div className="projectpage">
         <Navbar />
@@ -120,12 +170,24 @@ const ProjectDetail = () => {
                 &lt;
                 </button>
             )}
+            
             <img
                 ref={imageRef}
-                src={currentImage?.full}
-                alt={`${project.title} - Image ${currentIndex + 1}`}
+                src={currentImage.image_url}
+                alt={`${project.name} - ${currentImage.title || ''}`}
                 className="project-image"
+                // --- THE FIX ---
+                // We limit the image to 100% of the parent container's height/width
+                // 'objectFit: contain' ensures the aspect ratio is preserved
+                style={{ 
+                    maxHeight: '100%', 
+                    maxWidth: '100%', 
+                    width: 'auto', 
+                    height: 'auto',
+                    objectFit: 'contain'
+                }} 
             />
+
             {hasMultipleImages && (
                 <button
                 className="nav-arrow right-arrow"
@@ -136,18 +198,25 @@ const ProjectDetail = () => {
                 </button>
             )}
             </div>
+
             <div className="project-info-container" ref={infoContainerRef}>
-            <div className="image-details">
-                {titleLine && <p className="name">{titleLine}</p>}
-                <p className="medium">{currentImage?.media}</p>
-                {currentImage?.dimension && ( <p className="dimensions">{currentImage.dimension}</p>)}
-                <p className="year">{currentImage?.year}</p>
-            </div>
-            <div className="thumbnail-link-container">
-                <button className="thumbnail-link" onClick={navigateToThumbnails}>
-                SHOW THUMBNAILS
-                </button>
-            </div>
+                <div className="image-details">
+                    {titleLine && <p className="name">{titleLine}</p>}
+                    
+                    <p className="medium" style={{ whiteSpace: 'pre-wrap' }}>
+                        {currentImage.material}
+                    </p>
+                    
+                    {currentImage.size && ( <p className="dimensions">{currentImage.size}</p>)}
+                    
+                    <p className="year">{currentImage.year}</p>
+                </div>
+                
+                <div className="thumbnail-link-container">
+                    <button className="thumbnail-link" onClick={navigateToThumbnails}>
+                    SHOW THUMBNAILS
+                    </button>
+                </div>
             </div>
         </div>
         <CopyrightBar color="black" />

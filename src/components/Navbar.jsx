@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getAssetPath } from '../utils/paths.js';
+import { supabase } from '../supabaseClient'; // Make sure this path is correct
 import '../styles/Navbar.css';
 
 const Navbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const isHome = location.pathname === "/";
+
+    // State to hold the dynamic projects from Supabase
+    const [dbProjects, setDbProjects] = useState([]);
+
+    // Fetch projects on component mount
+    useEffect(() => {
+        const fetchProjects = async () => {
+            const { data, error } = await supabase
+                .from('projects')
+                .select('id, name, path')
+                .eq('is_active', true) // Only show active projects in the menu
+                .order('display_order', { ascending: true });
+
+            if (error) {
+                console.error("Error fetching navbar projects:", error);
+            } else {
+                setDbProjects(data);
+            }
+        };
+
+        fetchProjects();
+    }, []);
 
     const handleInstagramClick = () => {
         window.open('https://www.instagram.com/xilei_ceci_chen?igsh=MThuc2R0bHp1NjBoeA%3D%3D&utm_source=qr', '_blank', 'noopener,noreferrer');
@@ -17,7 +40,7 @@ const Navbar = () => {
     const instaIcon = isHome ? "/images/instagram.svg" : "/images/instagramb.svg";
 
     const nameSectionClass = isHome
-    ? "nameSection" // No hover/click styles
+    ? "nameSection" 
     : "nameSection nameSection--hoverable";
 
   return (
@@ -37,15 +60,21 @@ const Navbar = () => {
         {isHome && (
             <>
             <div className="projectSection">
-                <span className={`title ${textClass}`} onClick={() => navigate('/we-tried-to-hold-it-together/thumbnail')}>WE TRIED TO HOLD IT TOGETHER</span>
-                <span className={`title ${textClass}`} onClick={() => navigate('/marry-the-planet/thumbnail')}>MARRY THE PLANET 嫁给星球</span>
-                <span className={`title ${textClass}`} onClick={() => navigate('/untitled/thumbnail')}>UNTITLED</span>
-                <span className={`title ${textClass}`} onClick={() => navigate('/nowhere-to-hide/thumbnail')}>NOWHERE TO HIDE</span>
-                <span className={`title ${textClass}`} onClick={() => navigate('/cemetery-one-month/thumbnail')}>CEMETERY ONE MONTH 墓地一月</span>
-                <span className={`title ${textClass}`} onClick={() => navigate('/studio-work/thumbnail')}>STUDIO WORK</span>
+                {/* Dynamic Projects from Supabase */}
+                {dbProjects.map((project) => (
+                    <span 
+                        key={project.id} 
+                        className={`title ${textClass}`} 
+                        onClick={() => navigate(`/${project.path}/thumbnail`)}
+                    >
+                        {project.name}
+                    </span>
+                ))}
+                <span className={`title ${textClass}`} onClick={() => navigate('/archive/thumbnail')}>ARCHIVE WORK</span>
             </div>
 
             <div className="workSection">
+                {/* These remain hardcoded as requested/implied (not in projects table) */}
                 <span className={`title ${textClass}`} onClick={() => navigate('/event-photos/thumbnail')}>EVENT PHOTOS</span>
                 <span className={`title ${textClass}`} onClick={() => navigate('/graduation-photos/thumbnail')}>GRADUATION PHOTOS</span>   
             </div>
@@ -58,7 +87,6 @@ const Navbar = () => {
             <span className={`title ${textClass}`} onClick={() => navigate('/contact')}>CONTACT</span>
       </div>
 
-      {/* Instagram icon (clickable, bottom left) */}
       <div className="instagramIcon" aria-label="Visit Ceci Instagram" onClick={handleInstagramClick}>
         <img src={getAssetPath(instaIcon)} alt="Instagram" />
       </div>

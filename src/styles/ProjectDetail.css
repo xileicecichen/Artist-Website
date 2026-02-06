@@ -1,5 +1,3 @@
-/* ProjectDetail.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Murecho:wght@300;400;500&family=Syncopate:wght@400;700&display=swap');
 
 /* Main page container */
@@ -11,7 +9,7 @@
 
 /* Main content below the navbar */
 .projectpage-main {
-    position: fixed; /* Remove scrolling entirely */
+    position: fixed;
     top: 80px;
     left: 300px;
     right: 60px;
@@ -19,29 +17,29 @@
     background: white;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ensure central alignment */
+    align-items: center; /* This centers both the Image and the Info Container */
     box-sizing: border-box;
 }
 
 /* Image container */
 .image-container {
-    flex: 0 0 auto; /* Container stops after the image */
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 300px); /* Leave space for navbar + info below */
+    height: calc(100vh - 300px); 
     box-sizing: border-box;
 }
 
-/* Dynamically size the image based on smaller dimension */
+/* Image Styles */
 .project-image {
-    max-width: 90%; /* Ensure width takes remaining after arrows */
-    max-height: 100%; /* Ensure height doesn't overflow */
-    object-fit: contain; /* Scale-down based on maintaining aspect */
+    max-width: 90%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
-/* Navigation arrows to match image alignment */
+/* Navigation Arrows */
 .nav-arrow {
     position: absolute;
     background: none;
@@ -51,7 +49,7 @@
     cursor: pointer;
     padding: 10px;
     z-index: 5;
-    width: 5%; /* Arrows reserve 5% img-container width */
+    width: 5%; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,14 +67,27 @@
     right: 0;
 }
 
-/* Ensure project info is positioned below the image */
+/* --- THE FIX IS HERE --- */
 .project-info-container {
-    margin-top: 10px; /* Space between image and info */
-    width: 90%; /* Match the image width */
-    text-align: right; /* Align text to the right */
+    margin-top: 10px;
+    /* 1. Set max-width to 90% to match the image's constraints.
+       2. Set width to 'auto' initially. 
+       3. The JavaScript will overwrite 'width' with the exact pixel value of the image.
+    */
+    width: auto; 
+    max-width: 90%; 
+    
+    /* Ensure text pushes to the right edge */
+    text-align: right; 
+    
+    /* Ensure the container itself is centered in the parent */
+    align-self: center; 
+    
+    /* Smooth transition if you resize window */
+    transition: width 0.1s ease-out;
 }
 
-/* Style for textual info alignment and spacing */
+/* Style for textual info */
 .image-details {
     font-family: 'Murecho', sans-serif;
     text-transform: uppercase;
@@ -90,75 +101,39 @@
     margin: 4px 0;
 }
 
-/* Thumbnails follow layout properly */
+/* Thumbnails link */
 .thumbnail-link-container {
-    margin-top: 10px; /* Padding for thumbnails relative */
-    align-self: flex-end; /* Align right with info */
+    margin-top: 10px;
+    align-self: flex-end;
 }
 
 .thumbnail-link {
     font-family: 'Syncopate', sans-serif;
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0.2em;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.2em;
     background: white;
     border: none;
     cursor: pointer;
-  transition: transform 0.25s;
+    transition: transform 0.25s;
 }
 
 .thumbnail-link:focus,
 .thumbnail-link:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
-/* Responsive design for smaller widths */
+/* Responsive design for smaller heights */
 @media (max-width: 768px) {
     .projectpage-main {
-        top: 60px; /* Reduce navbar space */
+        top: 60px;
     }
-
     .image-container {
-        height: calc(100vh - 200px); /* Preserve clear spacing */
+        height: calc(100vh - 200px);
     }
 }
-/* ProjectDetail.css */
-/* Keep all your existing CSS above this section unchanged */
 
-/* Ensure project info is positioned below the image */
-.project-info-container {
-    margin-top: 10px; /* Space between image and info */
-    width: 90%; /* Match the image width */
-    text-align: right; /* Align text to the right */
-    position: relative; /* Add this to position it relatively */
-    /* The width will be controlled by JavaScript */
-}
-
-/* Style for textual info alignment and spacing */
-.image-details {
-    font-family: 'Murecho', sans-serif;
-    text-transform: uppercase;
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 1.6;
-    letter-spacing: 2px;
-}
-
-.image-details p {
-    margin: 4px 0;
-}
-
-/* Thumbnails follow layout properly */
-.thumbnail-link-container {
-    margin-top: 10px; 
-    align-self: flex-end; 
-}
-
-/* Add these at the end of your CSS file */
-@media (min-width: 1200px) {
-    /* This is the media query that will apply the info container adjustment at larger screens */
-    .project-info-container {
-        max-width: calc(90% - ((100vw - 1200px) / 2)); /* Adjusts width based on screen size difference */
-    }
-}
+/* REMOVED: The @media (min-width: 1200px) block.
+   It was calculating a width that conflicted with the JavaScript logic.
+*/

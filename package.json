@@ -10,12 +10,13 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build && echo 'xileicecichen.com' > dist/CNAME",
-    "deploy": "gh-pages -d dist",    
+    "deploy": "gh-pages -d dist",
     "deploy:force": "gh-pages -d dist -f",
     "clean": "rm -rf dist",
     "build:preview": "npm run build && npm run preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.95.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3"

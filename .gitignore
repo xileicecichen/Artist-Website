@@ -18,6 +18,7 @@ yarn-error.log*
 # Environment variables
 # Ignore local environment variables. These can contain sensitive API keys or secrets.
 # A .env.example file should be committed instead to show what variables are needed.
+.env
 .env.local
 .env.development.local
 .env.test.local

@@ -5,11 +5,21 @@ import Navbar from './Navbar';
 import CopyrightBar from './CopyrightBar';
 import '../styles/ProjectThumbnail.css'; 
 
+// HELPER: Requests a smaller version of the image from Supabase
+// This speeds up loading dramatically by not downloading full-resolution files
+const getOptimizedUrl = (url) => {
+    if (!url) return null;
+    // If it's a Supabase Storage URL, append width parameter
+    if (url.includes('supabase.co')) {
+        return `${url}?width=400&resize=contain`; 
+    }
+    return url;
+};
+
 export default function ProjectThumbnailPage() {
     const { slug } = useParams();
     const location = useLocation();
     
-    // Check if we are viewing the "Archive" page or a "Single Project" page
     const isArchive = location.pathname === '/archive/thumbnail';
 
     const [items, setItems] = useState([]);
@@ -23,32 +33,38 @@ export default function ProjectThumbnailPage() {
 
             try {
                 if (isArchive) {
-                    // --- MODE A: ARCHIVE (Show inactive projects) ---
+                    // --- MODE A: ARCHIVE ---
+                    // OPTIMIZATION: Select specific columns only. 
+                    // Instead of '*', we only ask for what we need.
                     const { data: projects, error } = await supabase
                         .from('projects')
-                        .select(`*, artworks (image_url, display_order)`)
+                        .select(`id, name, path, artworks (image_url, display_order)`)
                         .eq('is_active', false)
                         .order('display_order', { ascending: true });
 
                     if (error) throw error;
 
-                    // Map projects to the format your layout expects
-                    setItems(projects.map(p => ({
+                    const filteredProjects = projects.filter(p => {
+                        const name = p.name ? p.name.toLowerCase() : '';
+                        return !name.includes('event') && !name.includes('graduation');
+                    });
+
+                    setItems(filteredProjects.map(p => ({
                         id: p.id,
-                        // Link to that project's thumbnail page
                         linkUrl: `/${p.path}/thumbnail`,
-                        // Use the first artwork as the thumbnail
-                        imageUrl: p.artworks?.sort((a,b)=>a.display_order-b.display_order)[0]?.image_url,
+                        // Use helper to get smaller image
+                        imageUrl: getOptimizedUrl(
+                            p.artworks?.sort((a,b)=>a.display_order-b.display_order)[0]?.image_url
+                        ),
                         title: p.name
                     })));
 
                 } else {
-                    // --- MODE B: SINGLE PROJECT (Show artworks for 'slug') ---
+                    // --- MODE B: SINGLE PROJECT ---
                     
-                    // 1. Find the project ID
                     const { data: projectData, error: projError } = await supabase
                         .from('projects')
-                        .select('id, name')
+                        .select('id, name') // Fetch only ID and Name
                         .eq('path', slug)
                         .single();
 
@@ -58,21 +74,18 @@ export default function ProjectThumbnailPage() {
                         return;
                     }
 
-                    // 2. Fetch artworks
                     const { data: artworks, error: artError } = await supabase
                         .from('artworks')
-                        .select('*')
+                        .select('id, display_order, image_url, title') // Fetch only needed columns
                         .eq('project_id', projectData.id)
                         .order('display_order', { ascending: true });
 
                     if (artError) throw artError;
 
-                    // Map artworks to the format your layout expects
                     setItems(artworks.map(art => ({
                         id: art.id,
-                        // Link to the Detail page for this specific image
                         linkUrl: `/${slug}/detail/${art.display_order}`,
-                        imageUrl: art.image_url,
+                        imageUrl: getOptimizedUrl(art.image_url),
                         title: art.title || projectData.name
                     })));
                 }
@@ -85,8 +98,6 @@ export default function ProjectThumbnailPage() {
 
         fetchData();
     }, [slug, isArchive]);
-
-    // --- RENDER (Strictly following your Original Layout) ---
 
     if (notFound) {
         return (
@@ -105,8 +116,10 @@ export default function ProjectThumbnailPage() {
             <div className="thumbnailpage">
                 <Navbar />
                 <div className="thumbnailpage-main">
-                    {/* Optional: Add a loading spinner here if you want */}
-                    <div style={{color: 'white', padding: '20px'}}>Loading...</div>
+                    {/* Visual improvement: Simple text loader */}
+                    <div style={{color: '#888', padding: '40px', fontSize: '12px'}}>
+                        LOADING...
+                    </div>
                 </div>
                 <CopyrightBar />
             </div>
@@ -129,6 +142,8 @@ export default function ProjectThumbnailPage() {
                                     src={item.imageUrl}
                                     alt={item.title}
                                     className="thumbnail-image"
+                                    loading="lazy"    // <--- 1. Lazy Load (Crucial!)
+                                    decoding="async"  // <--- 2. Decode off main thread
                                 />
                             </div>
                         </Link>

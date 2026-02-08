@@ -15,7 +15,7 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
 
       <Route path="/:slug/thumbnail" element={<ProjectThumbnailPage />} />
-      <Route path="/:slug/detail/:order" element={<ProjectDetail />} />
+      <Route path="/:slug/detail/:id" element={<ProjectDetail />} />
       <Route path="/archive/thumbnail" element={<ProjectThumbnailPage />} />
       <Route path="/archive/:imgId" element={<ProjectDetail />} />
 

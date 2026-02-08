@@ -11,6 +11,7 @@ body {
   opacity: 0.7;     /* visually simulate thin */
 }
 
+/* --- COLORS --- */
 .navbar--white .nameSection,
 .navbar--white .nameEN,
 .navbar--white .nameCN,
@@ -32,6 +33,7 @@ body {
   color: #000 !important;
 }
 
+/* --- NAME SECTION (LOGO) --- */
 .nameSection {
   position: absolute;
   top: 60px;
@@ -39,12 +41,13 @@ body {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s;
+  transition: transform 0.25s; /* The animation speed */
 }
 
+/* This class is applied in Navbar.jsx when NOT on home */
 .nameSection--hoverable:focus,
 .nameSection--hoverable:hover {
-  transform: scale(1.03);
+  transform: scale(1.03); /* The zoom effect */
   cursor: pointer;
 }
 
@@ -64,8 +67,8 @@ body {
   margin-top: -5px;
 }
 
-/* ... repeat for other sections ... */
-
+/* --- MENU SECTIONS --- */
+/* Flexbox here makes the spans inside capable of transforming */
 .projectSection,
 .workSection,
 .naviSection {
@@ -82,18 +85,21 @@ body {
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.2em;
-  transition: transform 0.25s;
+  transition: transform 0.25s; /* The animation speed */
+  cursor: pointer; /* Ensure pointer shows on hover */
 }
 
 .title:focus,
 .title:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* The zoom effect */
 } 
 
+/* Positioning */
 .projectSection { bottom: 305px; }
 .workSection    { bottom: 235px; }
 .naviSection    { bottom: 145px; }
 
+/* --- INSTAGRAM ICON --- */
 .instagramIcon {
   position: absolute;
   left: 60px;
@@ -111,4 +117,119 @@ body {
 .instagramIcon:focus,
 .instagramIcon:hover {
   transform: scale(1.1);
+}
+
+/* --- MOBILE LAYOUT (Phones < 768px) --- */
+@media (max-width: 768px) {
+
+  /* =========================================
+     1. HOMEPAGE MOBILE (navbar--white)
+     ========================================= */
+  
+  /* Keep Name BIG and stacked on Home */
+  .navbar--white .nameSection {
+    top: 40px;
+    left: 30px;
+    align-items: flex-start;
+  }
+
+  /* Reduce Name size slightly so it doesn't dominate */
+  .navbar--white .nameEN {
+    font-size: 32px; 
+    line-height: 40px;
+  }
+  
+  .navbar--white .nameCN {
+    font-size: 20px;
+    display: block;
+  }
+  
+  /* Ensure the breaks are VISIBLE on Home */
+  .navbar--white .mobile-break {
+    display: inline; 
+  }
+
+  /* Force Name to be BLACK on Mobile Home */
+  .navbar--white .nameSection,
+  .navbar--white .nameEN,
+  .navbar--white .nameCN {
+    color: #000 !important;
+  }
+
+  /* LIFT MENU HIGHER (Closer to the name) */
+  .projectSection {
+    left: 30px;
+    bottom: 250px; /* Lifted significantly higher to close the gap */
+  }
+
+  .workSection {
+    left: 30px;
+    bottom: 180px; /* Lifted up */
+  }
+
+  .naviSection {
+    left: 30px;
+    bottom: 100px;  /* Lifted up */
+  }
+
+  .instagramIcon {
+    left: 30px;
+    bottom: 70px;  
+  }
+
+  /* SMALLER TITLES (Dinner Table, CV, etc) */
+  .title {
+    margin-bottom: 3px; 
+    font-size: 10px; /* Smaller font */
+    line-height: 14px; /* Tighter spacing */
+  }
+
+
+  /* =========================================
+     2. SUBPAGE MOBILE (navbar--black)
+     ========================================= */
+  
+  /* HIDE side menus */
+  .navbar--black .naviSection,
+  .navbar--black .instagramIcon,
+  .navbar--black .projectSection,
+  .navbar--black .workSection {
+    display: none !important;
+  }
+
+  /* CENTERED HEADER BAR */
+  .navbar--black .nameSection {
+    top: 20px;
+    left: 0;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;     
+    justify-content: center; 
+    align-items: center;
+    
+    pointer-events: auto;
+    cursor: pointer;
+    
+    transform: none !important;
+  }
+  
+  /* HIDE THE BREAKS (Make it one line) */
+  .navbar--black .mobile-break {
+    display: none;
+  }
+
+  /* One Line Header Style */
+  .navbar--black .nameEN {
+    font-size: 16px; /* Smaller for header */
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.1em; 
+  }
+  
+  /* Hide Chinese */
+  .navbar--black .nameCN {
+    display: none;
+  }
 }

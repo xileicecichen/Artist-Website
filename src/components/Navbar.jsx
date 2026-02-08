@@ -53,7 +53,14 @@ const Navbar = () => {
             onClick={isHome ? undefined : () => navigate("/")}
             aria-disabled={isHome ? "true" : undefined}
         >
-            <span className={`nameEN ${textClass}`}>XILEI <br /> CECI <br /> CHEN</span>
+            <span className={`nameEN ${textClass}`}>
+                <span>XILEI</span>
+                {/* We add spaces {' '} so they don't mash together when the break is hidden */}
+                <span className="mobile-break"><br /></span>{' '}
+                <span>CECI</span>
+                <span className="mobile-break"><br /></span>{' '}
+                <span>CHEN</span>
+            </span>            
             <span className={`nameCN ${textClass}`}>陈&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;熙蕾</span>
         </div>
 

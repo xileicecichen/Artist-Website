@@ -4,16 +4,22 @@
 .subpage {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    
+    /* FIX: Change min-height to strict height */
+    height: 100dvh; 
+    overflow: hidden; /* Stop the body from scrolling */
+    
     color: #222;
 }
 
+/* --- DESKTOP LAYOUT (Originall) --- */
 .subpage-main {
     position: absolute;
     left: 400px;
     right: 60px;
     background: #fff;
     display: flex;
+
     flex-direction: column;
     height: 100vh;
     overflow-y: auto;
@@ -22,7 +28,7 @@
 }
 
 .subpage-main::-webkit-scrollbar {
-  display: none;                /* Chrome, Safari, Edge */
+  display: none;
 }
 
 .cvpage-title {
@@ -33,34 +39,28 @@
     letter-spacing: 3px;
     font-weight: 300;
     font-family: 'Murecho', sans-serif;
+    display: block;
 }
 .cvpage-text {
     font-size: 15px;
     font-weight: 400;
     line-height: 25px;
     letter-spacing: 1.1px;
-    font-family: 'Murecho';
+    font-family: 'Murecho', sans-serif;
     font-style: normal;
-    /* margin-bottom: 3rem; */
+    display: block;
 }
 
-i {
-  font-family: 'Murecho', sans-serif;
-}
+i { font-family: 'Murecho', sans-serif; }
 
 a {
-  color: inherit;           /* or set your desired color, e.g. #333 */
-  text-decoration: none;    /* remove underline by default */
-  cursor: pointer;          /* optional: show pointer on hover */
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
+a:hover { text-decoration: underline; }
 
-a:hover {
-  text-decoration: underline;  /* underline only on hover */
-}
-
-.cvpage-title a {
-  font-size: 18px;
-}
+.cvpage-title a { font-size: 18px; }
 
 .statement-text {
     margin-top: 130px;
@@ -70,11 +70,13 @@ a:hover {
     line-height: 25px;
     letter-spacing: 1.1px;
     font-family: 'Annie Use Your Telescope', cursive;
+    white-space: pre-wrap; 
 }
 
+/* --- CONTACT DESKTOP (Original) --- */
 .contact-main {
     position: absolute;
-    left: 320px;
+    left: 320px; /* Keep your specific desktop offset */
     right: 60px;
     background: #fff;
     display: flex;
@@ -92,11 +94,12 @@ a:hover {
     align-items: flex-start;
 }
 
-.contact-img{
+.contact-img {
     padding-top: 130px;
     padding-bottom: 40px;
     width: 600px;
     height: 395px;
+    object-fit: cover;
 }
 
 .contact-text {
@@ -104,6 +107,103 @@ a:hover {
     font-weight: 400;
     line-height: 25px;
     letter-spacing: 3px;
-    font-family: 'Murecho';
+    font-family: 'Murecho', sans-serif;
     font-style: normal;
+}
+
+/* src/styles/SubPage.css - MOBILE SECTION ONLY */
+
+/* --- MOBILE OVERRIDES (Phones < 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. THUMBNAIL LOGIC: WRAPPER SCROLLS */
+    .subpage {
+        /* Strictly lock the screen */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh; 
+        
+        /* Enable Scroll here (Header scrolls away) */
+        overflow-y: auto; 
+        -webkit-overflow-scrolling: touch;
+        
+        /* FIX: Stack elements vertically (Nav -> Content -> Footer) */
+        display: flex; 
+        flex-direction: column;
+        
+        background: #fff;
+    }
+
+    /* 2. CV & STATEMENT CONTENT (Grows to fill space) */
+    .subpage-main {
+        position: relative;
+        left: auto; right: auto;
+        width: 100%;
+        
+        /* Grow to fill empty space, but don't shrink */
+        flex: 1 0 auto; 
+        height: auto; 
+        
+        /* Disable internal scrolling (Parent handles it) */
+        overflow: visible; 
+        
+        /* Padding: Top 0 (Nav is above), Sides 30, Bottom 0 */
+        padding: 30px 30px 0 30px; 
+        box-sizing: border-box;
+    }
+
+    /* 3. CONTACT PAGE (PRESERVED - DO NOT TOUCH LAYOUT) */
+    .contact-main {
+        position: relative;
+        left: auto; right: auto;
+        width: 100%;
+        height: auto;
+        
+        /* Adapt to Flex Parent */
+        flex: 1 0 auto; 
+        overflow: visible;
+        
+        /* Keep original Center Layout */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        padding: 0 30px 20px 30px;
+    }
+    /* Keep Contact Text Styling */
+    .contact-text { width: 100%; word-wrap: break-word; text-align: left; }
+    .contact-img { max-width: 100%; height: auto; margin-bottom: 10px; }
+
+
+    /* 4. SPACING FIXES (Statement & CV) */
+    /* CV: Push first title down */
+    .cv-category-block:first-child .cvpage-title { margin-top: 40px; }
+    .cvpage-title { font-size: 20px; margin-top: 30px; margin-bottom: 15px; }
+    
+    /* Statement: Use padding to prevent margin collapse */
+    .statement-text {
+        margin-top: 0; 
+        padding-top: 40px; 
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    /* 5. FOOTER FIX (Natural Flow) */
+    /* Forces the CopyrightBar to sit at the end of the scroll */
+    .subpage .copyright-bar {
+        position: static !important; /* No longer fixed/absolute */
+        width: 100%;
+        
+        /* Push to bottom if content is short */
+        margin-top: auto; 
+        
+        padding-top: 40px; /* Space between text and footer */
+        padding-bottom: 5px; /* Space at very bottom */
+        
+        background: transparent;
+        flex-shrink: 0; /* Ensure it never shrinks/disappears */
+        text-align: center;
+    }
 }

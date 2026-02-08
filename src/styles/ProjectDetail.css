@@ -1,13 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Murecho:wght@300;400;500&family=Syncopate:wght@400;700&display=swap');
 
-/* Main page container */
+/* --- GLOBAL LOCK (Matches index.css) --- */
 .projectpage {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh; /* Strict height */
+    overflow: hidden; /* No global scroll */
 }
 
-/* Main content below the navbar */
+.thumbnail-link {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 10px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+    
+    /* FIX: Force the text color to black to override phone defaults */
+    color: #000; 
+    
+    /* OPTIONAL: Removes default grey tap highlight on phones */
+    -webkit-tap-highlight-color: transparent;
+}
+
+.thumbnail-link:hover { 
+    text-decoration: underline; 
+}
+
+/* --- DESKTOP LAYOUT --- */
 .projectpage-main {
     position: fixed;
     top: 80px;
@@ -17,29 +38,32 @@
     background: white;
     display: flex;
     flex-direction: column;
-    align-items: center; /* This centers both the Image and the Info Container */
+    align-items: center; 
     box-sizing: border-box;
 }
 
-/* Image container */
-.image-container {
+/* HIDE MOBILE STRIP ON DESKTOP */
+.mobile-film-strip { display: none; }
+
+/* DESKTOP CONTAINER */
+.desktop-image-container {
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: calc(100vh - 300px); 
-    box-sizing: border-box;
+    position: relative;
 }
 
-/* Image Styles */
 .project-image {
     max-width: 90%;
     max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }
 
-/* Navigation Arrows */
 .nav-arrow {
     position: absolute;
     background: none;
@@ -49,45 +73,25 @@
     cursor: pointer;
     padding: 10px;
     z-index: 5;
-    width: 5%; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
 }
+.left-arrow { left: 0; }
+.right-arrow { right: 0; }
 
-.nav-arrow:hover {
-    color: black;
-}
-
-.left-arrow {
-    left: 0;
-}
-
-.right-arrow {
-    right: 0;
-}
-
-/* --- THE FIX IS HERE --- */
 .project-info-container {
     margin-top: 10px;
-    /* 1. Set max-width to 90% to match the image's constraints.
-       2. Set width to 'auto' initially. 
-       3. The JavaScript will overwrite 'width' with the exact pixel value of the image.
-    */
     width: auto; 
     max-width: 90%; 
-    
-    /* Ensure text pushes to the right edge */
     text-align: right; 
-    
-    /* Ensure the container itself is centered in the parent */
     align-self: center; 
-    
-    /* Smooth transition if you resize window */
     transition: width 0.1s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-/* Style for textual info */
+/* TEXT STYLES */
 .image-details {
     font-family: 'Murecho', sans-serif;
     text-transform: uppercase;
@@ -95,45 +99,126 @@
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: 2px;
+    color: #000;
 }
-
-.image-details p {
-    margin: 4px 0;
-}
-
-/* Thumbnails link */
-.thumbnail-link-container {
-    margin-top: 10px;
-    align-self: flex-end;
-}
+.name { font-weight: 500; margin-bottom: 5px; }
+.medium, .dimensions, .year { margin: 2px 0; }
 
 .thumbnail-link {
     font-family: 'Syncopate', sans-serif;
     font-size: 10px;
-    font-weight: 400;
-    line-height: 20px;
-    letter-spacing: 0.2em;
     background: white;
     border: none;
     cursor: pointer;
-    transition: transform 0.25s;
+    text-decoration: none;
+    margin-top: 10px;
 }
+.thumbnail-link:hover { text-decoration: underline; }
 
-.thumbnail-link:focus,
-.thumbnail-link:hover {
-    transform: scale(1.05);
-}
 
-/* Responsive design for smaller heights */
+/* --- MOBILE ONLY (Phones < 768px) --- */
 @media (max-width: 768px) {
-    .projectpage-main {
-        top: 60px;
+    
+    /* 1. SCROLLABLE WRAPPER (Apply Thumbnail/SubPage logic here too) */
+    .projectpage {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100dvh;
+        
+        overflow-y: auto !important; /* Header scrolls away */
+        -webkit-overflow-scrolling: touch;
+        
+        display: flex;
+        flex-direction: column;
     }
-    .image-container {
-        height: calc(100vh - 200px);
+
+    .projectpage-main {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        
+        height: auto !important; /* Grow with content */
+        overflow: visible !important;
+        
+        /* Remove top padding (Navbar is stacked) */
+        padding-top: 0 !important; 
+        padding-bottom: 20px;
+        
+        display: block !important;
+    }
+
+    /* Hide Desktop */
+    .desktop-image-container { display: none !important; }
+
+    /* 2. THE FILM STRIP (Fixed Height for Consistency) */
+    .mobile-film-strip {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        
+        /* FIX: FORCE A TALL HEIGHT (Matches vertical pictures) */
+        /* Even if the image is short (horizontal), this box stays tall */
+        height: 50vh !important; 
+        
+        /* Push down to clear Navbar */
+        margin-top: 90px; 
+        margin-bottom: 10px;
+        
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        flex-wrap: nowrap !important;
+        scrollbar-width: none; 
+        -ms-overflow-style: none;
+        align-items: center;
+    }
+    
+    .mobile-film-strip::-webkit-scrollbar { display: none; }
+
+    .mobile-image-wrapper {
+        /* Force full screen width per image */
+        flex: 0 0 100%; 
+        width: 100%;
+        height: 100%; /* Fill the 65vh strip */
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        
+        padding: 0 30px;
+        box-sizing: border-box;
+    }
+
+    .mobile-project-image {
+        max-width: 100%;
+        
+        /* FIX: Let image fill the container's height if it needs to */
+        max-height: 100%; 
+        
+        object-fit: contain;
+        width: auto;
+        height: auto;
+        box-shadow: none;
+        
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    /* 3. INFO SECTION */
+    /* This will now always sit at the same vertical position */
+    .project-info-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 30px 40px 30px; /* Added bottom padding for footer space */
+        box-sizing: border-box;
+        margin-top: 10px;
+        align-items: flex-end; 
+        text-align: right;
     }
 }
-
-/* REMOVED: The @media (min-width: 1200px) block.
-   It was calculating a width that conflicted with the JavaScript logic.
-*/

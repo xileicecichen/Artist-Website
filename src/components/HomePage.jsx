@@ -4,22 +4,22 @@ import Navbar from './Navbar';
 import CopyrightBar from './CopyrightBar';
 import { getAssetPath } from '../utils/paths.js';
 
-
 export default function HomePage() {
+  const bgUrl = getAssetPath('/images/home-page/home-page.webp');
 
   return (
-    <div className="homepage">
-      {/* Main background image fills viewport */}
-      <img
-        className="mainImage"
-        src={getAssetPath('/images/home-page/home-page.webp')}
-        alt="Ceci Chen Artwork"
-        draggable={false}
+    <>
+      {/* LAYER 1: The Background (Floods the screen, ignores notch) */}
+      <div 
+        className="home-background" 
+        style={{ backgroundImage: `url(${bgUrl})` }}
       />
 
-      <Navbar />
-
-      <CopyrightBar color="white" />
-    </div>
+      {/* LAYER 2: The Content (Respects the notch, holds Navbar) */}
+      <div className="home-content">
+        <Navbar />
+        <CopyrightBar color="white" />
+      </div>
+    </>
   );
 }

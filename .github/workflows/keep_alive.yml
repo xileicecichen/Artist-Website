@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Send a Ping Request
         run: |
-          curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/YOUR_TABLE_NAME?select=*" \
+          curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/artworks?select=*" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
